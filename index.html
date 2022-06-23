@@ -15,33 +15,37 @@
     }
     
     function compare(){
-      let userInput=prompt('Choose your fighter: rock, paper, or scissors').toLocaleLowerCase;
-      if (userInput==="scissors" || randomChoise()==="scissors"){
-        console.log("it's a tie");
-      }else if (userInput==="scissors" || randomChoise()==="paper"){
-        console.log("you won");
+      let random=randomChoise();
+      let userInput=prompt('Choose your fighter: rock, paper, or scissors').toLowerCase();
+      if (userInput===random){
+        return tieMessage=`it's a tie! ${userInput} equals ${random}`;
+      }else if ((userInput==="rock" && random==="scissors") ||
+      (userInput==="scissors" && random==="paper") ||
+      (userInput==="paper" && random==="rock")){
+        return winMessage=`You won! ${userInput} beats ${random}`;
+      }else if (userInput=!"rock"||!"paper"||"scissors"){
+        return message="Enter valid player";
       }else{
-        console.log("you lose");
+        return loseMessage=`You lose! ${userInput} can't beat ${random}`;}
       }
-
-      if (userInput==="paper" || randomChoise()==="paper"){
-        console.log("it's a tie");
-      }else if (userInput==="paper" || randomChoise()==="rock"){
-        console.log("you won");
-      }else{
-        console.log("you lose");
+    
+    function mainGame(){
+      let winCounter=0;
+      let tieCounter=0;
+      let loseCounter=0;
+      for (let i=0; i<5; i++) {
+        compare();
+          if (compare()===tieMessage){
+            tieCounter++;
+          }else if (compare()===winCounter){
+            winCounter++;
+          }else{
+            loseCounter++;}
+          console.log(`It's ${winCounter} wins, ${loseCounter} loses, and ${tieCounter})
       }
-
-      if (userInput==="rock" || randomChoise()==="rock"){
-        console.log("it's a tie");
-      }else if (userInput==="rock" || randomChoise()==="scissors"){
-        console.log("you won");
-      }else{
-        console.log("you lose");
-      }
-    }
   
-    compare();
+    }
+      
   </script>
 </body>
 </html>
