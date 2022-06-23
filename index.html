@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const choices=["rock", "paper", "scissors"];
+    function randomChoise (){
+      let aiChoise=choices.at(Math.floor(Math.random()*choices.length));
+      return aiChoise;
+    }
+    
+    function compare(){
+      let userInput=prompt('Choose your fighter: rock, paper, or scissors').toLocaleLowerCase;
+      if (userInput==="scissors" || randomChoise()==="scissors"){
+        console.log("it's a tie");
+      }else if (userInput==="scissors" || randomChoise()==="paper"){
+        console.log("you won");
+      }else{
+        console.log("you lose");
+      }
+
+      if (userInput==="paper" || randomChoise()==="paper"){
+        console.log("it's a tie");
+      }else if (userInput==="paper" || randomChoise()==="rock"){
+        console.log("you won");
+      }else{
+        console.log("you lose");
+      }
+
+      if (userInput==="rock" || randomChoise()==="rock"){
+        console.log("it's a tie");
+      }else if (userInput==="rock" || randomChoise()==="scissors"){
+        console.log("you won");
+      }else{
+        console.log("you lose");
+      }
+    }
+  
+    compare();
+  </script>
+</body>
+</html>
