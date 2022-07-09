@@ -5,44 +5,83 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+  <button id="rock" value="rock">Rock</button>
+  <button id="paper" value="paper">Paper</button>
+  <button id="scissors" value="scissors">Scissors</button>
+  <div id="score">
+    <h2>Results</h2>
+    <p id="results"></p>
+  </div>
   <script>
+  
     const choices=["rock", "paper", "scissors"];
     function randomChoise (){
       let aiChoise=choices.at(Math.floor(Math.random()*choices.length));
       return aiChoise;
     }
-    ;
 
-    function compare(){
-      let winCounter=0;
-      let loseCounter=0;
-      let tieCounter=0
+    let win=0;
+      let lose=0;
+
+    function compare(userInput){
+      
+      let result='';
       let random=randomChoise();  
-      for (let i=0; i<5; i++){
-        let userInput=prompt('Choose your fighter: rock, paper, or scissors').toLowerCase();  
-          if (userInput==random){
-            tieCounter+=1;
-            console.log (tieMessage=`it's a tie! ${userInput} equals ${random}
-            You have ${winCounter} wins, ${loseCounter} loses and ${tieCounter} ties`);
-            
-          }else if ((userInput=="rock" && random=="scissors") ||
-            (userInput=="scissors" && random=="paper") ||
-            (userInput=="paper" && random=="rock")){
-            winCounter+=1;
-            console.log (winMessage=`You won! ${userInput} beats ${random}
-            You have ${winCounter} wins, ${loseCounter} loses and ${tieCounter} ties`);
-            
-          }else if ((userInput=="scissors" && random=="rock") ||
-            (userInput=="paper" && random=="scissors") ||
-            (userInput=="rock" && random=="paper")){
-            loseCounter+=1;
-            console.log (loseMessage=`You lose! ${userInput} can't beat ${random}
-            You have ${winCounter} wins, ${loseCounter} loses and ${tieCounter} ties`);
-          }
-      }  
-    } 
+      console.log(random);
+      if (userInput===random){
+        result = (`You've chosen ${userInput}. You up against ${random}. It's tie! 
+        Current score is unchanged. You have ${win} wins, and ${lose} loses`);
+        console.log(userInput);
+        console.log(random);
+          
+      }else if ((userInput=="rock" && random=="scissors") ||
+        (userInput=="scissors" && random=="paper") ||
+        (userInput=="paper" && random=="rock")){
+          win+=1;
+        result = (`You've chosen ${userInput}. You up against ${random}. You've won! 
+        You have ${win} wins, and ${lose} loses;`);
+        console.log(userInput);
+        console.log(random);
+        
+      }else if ((userInput=="scissors" && random=="rock") ||
+        (userInput=="paper" && random=="scissors") ||
+        (userInput=="rock" && random=="paper")){
+          lose+=1;
+        result = (`You've chosen ${userInput}. You up against ${random}. Wasted! 
+        You have ${win} wins, and ${lose} loses;`);
+        console.log(userInput);
+        console.log(random);
+      }
+      if (win==5){
+        result="You won!";
+      }else if(lose==5){
+        result="You've lost!";
+      }
+      
+      document.getElementById("results").textContent=result;
+    }
+    
+     
+
+    const btnRock = document.querySelector("#rock");
+    btnRock.addEventListener("click", () => compare("rock"));
+
+    const btnScissors = document.querySelector("#scissors");
+    btnScissors.addEventListener("click", () => compare("scissors"));
+
+    const btnPaper = document.querySelector("#paper");
+    btnPaper.addEventListener("click", () => compare("paper"));
+
+    
+
+  
+ 
+
+
+
   </script>
 </body>
 </html>
